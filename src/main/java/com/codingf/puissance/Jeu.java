@@ -45,8 +45,15 @@ public class Jeu {
                     System.out.println("Vous allez jouer seul");
                     grille.affichageGrille();
                     replay = false;
+                    boolean game = true ;
+                    while (game) {
+                        System.out.println("Selectionner une column ");
+                        String numColInput = input.next();
+                        System.out.println(numColInput);
+                        game = false;
+                        break;
+                    }
                     break;
-
                 case "2":
                     System.out.println("Vous jouez à 2");
 
@@ -76,9 +83,44 @@ public class Jeu {
                     System.out.println(player1);
                     System.out.println(player2);
 
-                    grille.affichageGrille();
-                    replay = false;
-                    break;
+                    boolean play = true;
+                        while (play) {
+
+                            grille.affichageGrille();
+
+                            int line = 5;
+
+                            System.out.println("Sélectionnez une colonne ");
+                            String numColInput = input.next();
+                            System.out.println(numColInput);
+
+                            int numCol;
+
+                            try {
+                                numCol = Integer.parseInt(numColInput)-1;
+                                if (numCol < 0 || numCol > 6) {
+                                    System.out.println("selectionner une colonne entre 1 et 7");
+                                    continue;
+                                }
+
+                            }
+                            catch (Exception e) {
+                                System.err.println("Veuillez entrer un nombre valide");
+                                continue;
+                            }
+
+                            while (casesList[line][numCol].getSymbol() != ' ' ) {
+                                line --;
+                            }
+
+                            casesList[line][numCol].setSymbol('1');
+
+                            //play = false;
+                            //break;
+                        }
+
+                        break;
+
 
                 case "3":
                     System.out.println("Voici le top 10");
