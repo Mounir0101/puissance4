@@ -1,6 +1,6 @@
 package com.codingf.puissance.modeles;
 
-import com.codingf.puissance.modeles.Cases;
+//import com.codingf.puissance.modeles.Cases;
 
 public class Grille {
 

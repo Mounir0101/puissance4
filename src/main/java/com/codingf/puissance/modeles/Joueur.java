@@ -2,9 +2,9 @@ package com.codingf.puissance.modeles;
 
 public class Joueur {
 
-    String pseudo;
+    private String pseudo;
 
-    char symbol;
+    private char symbol;
 
     public Joueur(String pseudo, char symbol) {
         this.pseudo = pseudo;
