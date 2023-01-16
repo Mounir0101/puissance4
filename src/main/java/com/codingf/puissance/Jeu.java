@@ -1,6 +1,7 @@
 package com.codingf.puissance;
 import com.codingf.puissance.modeles.Grille;
 import com.codingf.puissance.modeles.Joueur;
+import com.codingf.puissance.modeles.Cases;
 
 import java.util.Scanner;
 
@@ -11,6 +12,22 @@ public class Jeu {
         Scanner input = new Scanner(System.in);
         boolean replay = true;
 
+        Cases[][] casesList = new Cases[6][7];
+
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 7; j++) {
+                Cases square = new Cases(i, j, ' ');
+                casesList[i][j] = square;
+            }
+        }
+
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 7; j++) {
+                System.out.print(casesList[i][j].getSymbol() + "|");
+            }
+            System.out.println();
+        }
+
         while (replay) {
 
             System.out.println("1- Jouer tout seul");
@@ -20,7 +37,7 @@ public class Jeu {
             System.out.println( "Que voulez vous faire ? ");
             String reponseInput = input.next();
 
-            Grille grille = new Grille();
+            Grille grille = new Grille(casesList);
 
             switch (reponseInput) {
 
@@ -70,7 +87,7 @@ public class Jeu {
 
                 case "4":
                     System.out.println("Salut");
-                    System.exit(1);
+                    System.exit(0);
 
                 default:
                     System.out.println("Veuillez sélectionner une option valide");
