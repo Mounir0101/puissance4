@@ -1,7 +1,9 @@
 package com.codingf.puissance;
+
 import com.codingf.puissance.modeles.Grille;
 import com.codingf.puissance.modeles.Joueur;
 import com.codingf.puissance.modeles.Cases;
+import com.codingf.puissance.fonctions.Victoire;
 
 import java.util.Scanner;
 
@@ -14,20 +16,6 @@ public class Jeu {
 
         Cases[][] casesList = new Cases[6][7];
 
-        for (int i = 0; i < 6; i++) {
-            for (int j = 0; j < 7; j++) {
-                Cases square = new Cases(i, j, ' ');
-                casesList[i][j] = square;
-            }
-        }
-
-        for (int i = 0; i < 6; i++) {
-            for (int j = 0; j < 7; j++) {
-                System.out.print(casesList[i][j].getSymbol() + "|");
-            }
-            System.out.println();
-        }
-
         while (replay) {
 
             System.out.println("1- Jouer tout seul");
@@ -37,13 +25,11 @@ public class Jeu {
             System.out.println( "Que voulez vous faire ? ");
             String reponseInput = input.next();
 
-            Grille grille = new Grille(casesList);
-
             switch (reponseInput) {
 
                 case "1":
                     System.out.println("Vous allez jouer seul");
-                    grille.affichageGrille();
+                    /*grille.affichageGrille();
                     replay = false;
                     boolean game = true ;
                     while (game) {
@@ -52,9 +38,19 @@ public class Jeu {
                         System.out.println(numColInput);
                         game = false;
                         break;
-                    }
+                    }*/
                     break;
                 case "2":
+
+                    for (int i = 0; i < 6; i++) {
+                        for (int j = 0; j < 7; j++) {
+                            Cases square = new Cases(i, j, ' ');
+                            casesList[i][j] = square;
+                        }
+                    }
+
+                    Grille grille = new Grille(casesList);
+
                     System.out.println("Vous jouez à 2");
 
                     Scanner players = new Scanner(System.in);
@@ -86,60 +82,76 @@ public class Jeu {
                     String currentPlayerPseudo = player1.getPseudo();
                     char currentPlayerSymbol = player1.getSymbol();
                     boolean play = true;
+                    int turn = 0;
 
-                        while (play) {
+                    while (play) {
 
-                            grille.affichageGrille();
+                        grille.affichageGrille();
 
-                            int line = 5;
+                        int line = 5;
 
-                            System.out.println("Sélectionnez une colonne "+currentPlayerPseudo);
-                            String numColInput = input.next();
-                            System.out.println(numColInput);
+                        System.out.println("Sélectionnez une colonne "+currentPlayerPseudo);
+                        String numColInput = input.next();
+                        System.out.println(numColInput);
 
-                            int numCol;
+                        int numCol;
 
-                            try {
-                                numCol = Integer.parseInt(numColInput)-1;
-                                if (numCol < 0 || numCol > 6) {
-                                    System.out.println("selectionner une colonne entre 1 et 7");
-                                    continue;
-                                }
-
-                            }
-                            catch (Exception e) {
-                                System.err.println("Veuillez entrer un nombre valide");
+                        try {
+                            numCol = Integer.parseInt(numColInput)-1;
+                            if (numCol < 0 || numCol > 6) {
+                                System.out.println("selectionner une colonne entre 1 et 7");
                                 continue;
                             }
 
-                            try {
-
-                                while (casesList[line][numCol].getSymbol() != ' ' ) {
-                                    line --;
-                                }
-
-                                casesList[line][numCol].setSymbol(currentPlayerSymbol);
-                            }
-                            catch (ArrayIndexOutOfBoundsException e){
-                                System.err.println("choisissez une autre colonne ");
-                                continue;
-                            }
-
-
-                            if (currentPlayerPseudo.equals(player1.getPseudo())){
-                                currentPlayerPseudo = player2.getPseudo();
-                                currentPlayerSymbol = player2.getSymbol();
-                            }else {
-                                currentPlayerPseudo = player1.getPseudo();
-                                currentPlayerSymbol = player1.getSymbol();
-
-                            }
-
-                            //play = false;
-                            //break;
+                        }
+                        catch (Exception e) {
+                            System.err.println("Veuillez entrer un nombre valide");
+                            continue;
                         }
 
-                        break;
+                        try {
+
+                            while (casesList[line][numCol].getSymbol() != ' ' ) {
+                                line --;
+                            }
+
+                            casesList[line][numCol].setSymbol(currentPlayerSymbol);
+                        }
+                        catch (ArrayIndexOutOfBoundsException e){
+                            System.err.println("choisissez une autre colonne ");
+                            continue;
+                        }
+
+                        if (Victoire.lineVictory(casesList) || Victoire.columnVictory(casesList) ||
+                            Victoire.diagTLBRVictory(casesList) || Victoire.diagTRBLVictory(casesList)) {
+                            play = false;
+                            grille.affichageGrille();
+                            System.out.println();
+                            System.out.println("Victoire de " + currentPlayerPseudo + "\n");
+                        }
+
+                        turn += 1;
+
+                        if (turn == 42 && play) {
+                            grille.affichageGrille();
+                            System.out.println();
+                            System.out.println("Egalité, fin de la partie\n");
+                            play = false;
+                        }
+
+                        if (currentPlayerPseudo.equals(player1.getPseudo())){
+                            currentPlayerPseudo = player2.getPseudo();
+                            currentPlayerSymbol = player2.getSymbol();
+                        }else {
+                            currentPlayerPseudo = player1.getPseudo();
+                            currentPlayerSymbol = player1.getSymbol();
+                        }
+
+                        //play = false;
+                        //break;
+                    }
+
+                    break;
 
 
                 case "3":
