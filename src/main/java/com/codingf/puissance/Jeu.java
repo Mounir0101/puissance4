@@ -83,14 +83,17 @@ public class Jeu {
                     System.out.println(player1);
                     System.out.println(player2);
 
+                    String currentPlayerPseudo = player1.getPseudo();
+                    char currentPlayerSymbol = player1.getSymbol();
                     boolean play = true;
+
                         while (play) {
 
                             grille.affichageGrille();
 
                             int line = 5;
 
-                            System.out.println("Sélectionnez une colonne ");
+                            System.out.println("Sélectionnez une colonne "+currentPlayerPseudo);
                             String numColInput = input.next();
                             System.out.println(numColInput);
 
@@ -109,11 +112,28 @@ public class Jeu {
                                 continue;
                             }
 
-                            while (casesList[line][numCol].getSymbol() != ' ' ) {
-                                line --;
+                            try {
+
+                                while (casesList[line][numCol].getSymbol() != ' ' ) {
+                                    line --;
+                                }
+
+                                casesList[line][numCol].setSymbol(currentPlayerSymbol);
+                            }
+                            catch (ArrayIndexOutOfBoundsException e){
+                                System.err.println("choisissez une autre colonne ");
+                                continue;
                             }
 
-                            casesList[line][numCol].setSymbol('1');
+
+                            if (currentPlayerPseudo.equals(player1.getPseudo())){
+                                currentPlayerPseudo = player2.getPseudo();
+                                currentPlayerSymbol = player2.getSymbol();
+                            }else {
+                                currentPlayerPseudo = player1.getPseudo();
+                                currentPlayerSymbol = player1.getSymbol();
+
+                            }
 
                             //play = false;
                             //break;
