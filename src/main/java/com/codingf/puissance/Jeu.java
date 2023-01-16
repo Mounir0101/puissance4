@@ -1,5 +1,6 @@
 package com.codingf.puissance;
 import com.codingf.puissance.modeles.Grille;
+import com.codingf.puissance.modeles.Joueur;
 
 import java.util.Scanner;
 
@@ -22,20 +23,57 @@ public class Jeu {
             Grille grille = new Grille();
 
             switch (reponseInput) {
-                case "1" :
+
+                case "1":
                     System.out.println("Vous allez jouer seul");
                     grille.affichageGrille();
+                    replay = false;
                     break;
-                case "2" :
+
+                case "2":
                     System.out.println("Vous jouez à 2");
+
+                    Scanner players = new Scanner(System.in);
+                    System.out.println("Joueur 1, choisissez votre pseudo");
+                    String player1Pseudo = players.nextLine();
+                    System.out.println("Joueur 1, choisissez votre symbole");
+                    char player1Symbol = players.nextLine().charAt(0);
+                    System.out.println("Joueur 2, choisissez votre pseudo");
+                    String player2Pseudo = players.nextLine();
+                    char player2Symbol;
+
+                    while (true) {
+                        System.out.println("Joueur 2, choisissez votre symbole");
+                        player2Symbol = players.nextLine().charAt(0);
+                        if (player2Symbol == player1Symbol) {
+                            System.out.println("Les deux joueurs ne peuvent pas avoir le même symbole");
+                            continue;
+                        } else {
+                            break;
+                        }
+                    }
+
+                    Joueur player1 = new Joueur(player1Pseudo, player1Symbol);
+                    Joueur player2 = new Joueur(player2Pseudo, player2Symbol);
+
+                    System.out.println(player1);
+                    System.out.println(player2);
+
                     grille.affichageGrille();
+                    replay = false;
                     break;
+
                 case "3":
                     System.out.println("Voici le top 10");
+                    replay = false;
                     break;
-                case "4" :
+
+                case "4":
                     System.out.println("Salut");
                     System.exit(1);
+
+                default:
+                    System.out.println("Veuillez sélectionner une option valide");
             }
 
         }
