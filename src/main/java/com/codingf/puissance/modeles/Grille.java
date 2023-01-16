@@ -13,6 +13,31 @@ public class Grille {
     public void affichageGrille() {
 
         System.out.println("╔═══╦═══╦═══╦═══╦═══╦═══╦═══╗");
+        for (int i = 0 ; i < 6; i++ ){
+            for (int j = 0 ; j < 7 ; j++){
+                if (j == 0) {
+                    System.out.print("║ " + casesList[i][j].getSymbol());
+                }
+                else {
+                    System.out.print(" ║ " + casesList[i][j].getSymbol());
+                }
+
+
+
+            }
+            System.out.println(" ║");
+            if ( i == 5){
+                System.out.println("╚═══╩═══╩═══╩═══╩═══╩═══╩═══╝");
+            }else{
+                System.out.println("╠═══╬═══╬═══╬═══╬═══╬═══╬═══╣");
+            }
+
+
+        }
+
+
+        //System.out.println("║ "+casesList[0][0]+" ║   ║   ║   ║   ║   ║   ║");
+        /*System.out.println("╠═══╬═══╬═══╬═══╬═══╬═══╬═══╣");
         System.out.println("║   ║   ║   ║   ║   ║   ║   ║");
         System.out.println("╠═══╬═══╬═══╬═══╬═══╬═══╬═══╣");
         System.out.println("║   ║   ║   ║   ║   ║   ║   ║");
@@ -22,9 +47,7 @@ public class Grille {
         System.out.println("║   ║   ║   ║   ║   ║   ║   ║");
         System.out.println("╠═══╬═══╬═══╬═══╬═══╬═══╬═══╣");
         System.out.println("║   ║   ║   ║   ║   ║   ║   ║");
-        System.out.println("╠═══╬═══╬═══╬═══╬═══╬═══╬═══╣");
-        System.out.println("║   ║   ║   ║   ║   ║   ║   ║");
-        System.out.println("╚═══╩═══╩═══╩═══╩═══╩═══╩═══╝");
+        */
 
     }
 
