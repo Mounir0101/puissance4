@@ -2,10 +2,11 @@ package com.codingf.puissance.modeles;
 
 public class Cases {
 
-    int line;
-    int column;
+    private int line;
 
-    char symbol;
+    private int column;
+
+    private char symbol;
 
     public Cases(int line, int column, char symbol) {
         this.line = line;
