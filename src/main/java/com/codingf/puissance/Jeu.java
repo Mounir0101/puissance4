@@ -4,10 +4,9 @@ import com.codingf.puissance.modeles.Grille;
 import com.codingf.puissance.modeles.Joueur;
 import com.codingf.puissance.modeles.Cases;
 import com.codingf.puissance.fonctions.Victoire;
+import com.codingf.puissance.fileactions.ReadFile;
+import com.codingf.puissance.fileactions.WriteFile;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.Scanner;
 
 public class Jeu {
@@ -85,8 +84,6 @@ public class Jeu {
                     Joueur currentPlayer = new Joueur(player1.getPseudo(), player1.getSymbol(), player1.getTurn());
                     boolean play = true;
                     int turn = 0;
-                    int turnPlayer1 = 0;
-                    int turnPlayer2 = 0;
 
                     while (play) {
 
@@ -96,7 +93,6 @@ public class Jeu {
 
                         System.out.println("Sélectionnez une colonne "+currentPlayer.getPseudo());
                         String numColInput = input.next();
-                        //System.out.println(numColInput);
 
                         int numCol;
 
@@ -123,19 +119,9 @@ public class Jeu {
                             currentPlayer.setTurn(currentPlayer.getTurn()+1);
                         }
                         catch (ArrayIndexOutOfBoundsException e){
-                            System.err.println("choisissez une autre colonne ");
+                            System.err.println("Choisissez une autre colonne");
                             continue;
                         }
-
-
-
-                        System.out.println(currentPlayer.getTurn());
-
-                        /*if (currentPlayer.getPseudo().equals(player1.getPseudo())){
-                            turnPlayer1 ++;
-                        }else {
-                            turnPlayer2 ++;
-                        }*/
 
                         turn += 1;
 
@@ -144,20 +130,9 @@ public class Jeu {
                             play = false;
                             grille.affichageGrille();
                             System.out.println();
-                            //if (currentPlayer.getPseudo().equals(player1.getPseudo())){
-                                System.out.println("Victoire de " + currentPlayer.getPseudo() + " en "+currentPlayer.getTurn()+ " coups\n");
-                            //}
-                            //else {
-                            //    System.out.println("Victoire de " + currentPlayer.getPseudo() + " en "+currentPlayer.getTurn()+ " coups\n");
-                            //}
-                            try {
-                                BufferedWriter sortie = new BufferedWriter(new FileWriter("top10.txt", true));
-                                sortie.write(currentPlayer.getPseudo()+"\n");
-                                sortie.close();
-                            }
-                            catch (IOException e) {
-                                System.out.println("ca marche pas");
-                            }
+                            System.out.println("Victoire de " + currentPlayer.getPseudo() + " en "+currentPlayer.getTurn()+ " coups\n");
+
+                            WriteFile.writeTop10(currentPlayer);
 
                         }
 
@@ -176,6 +151,9 @@ public class Jeu {
 
                 case "3":
                     System.out.println("Voici le top 10");
+
+                    ReadFile.readTop10();
+
                     replay = false;
                     break;
 
