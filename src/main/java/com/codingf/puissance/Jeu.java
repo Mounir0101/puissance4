@@ -79,8 +79,7 @@ public class Jeu {
                     System.out.println(player1);
                     System.out.println(player2);
 
-                    String currentPlayerPseudo = player1.getPseudo();
-                    char currentPlayerSymbol = player1.getSymbol();
+                    Joueur currentPlayer = new Joueur(player1.getPseudo(), player1.getSymbol());
                     boolean play = true;
                     int turn = 0;
 
@@ -90,7 +89,7 @@ public class Jeu {
 
                         int line = 5;
 
-                        System.out.println("Sélectionnez une colonne "+currentPlayerPseudo);
+                        System.out.println("Sélectionnez une colonne "+currentPlayer.getPseudo());
                         String numColInput = input.next();
                         System.out.println(numColInput);
 
@@ -115,7 +114,7 @@ public class Jeu {
                                 line --;
                             }
 
-                            casesList[line][numCol].setSymbol(currentPlayerSymbol);
+                            casesList[line][numCol].setSymbol(currentPlayer.getSymbol());
                         }
                         catch (ArrayIndexOutOfBoundsException e){
                             System.err.println("choisissez une autre colonne ");
@@ -127,7 +126,7 @@ public class Jeu {
                             play = false;
                             grille.affichageGrille();
                             System.out.println();
-                            System.out.println("Victoire de " + currentPlayerPseudo + "\n");
+                            System.out.println("Victoire de " + currentPlayer.getPseudo() + "\n");
                         }
 
                         turn += 1;
@@ -139,20 +138,11 @@ public class Jeu {
                             play = false;
                         }
 
-                        if (currentPlayerPseudo.equals(player1.getPseudo())){
-                            currentPlayerPseudo = player2.getPseudo();
-                            currentPlayerSymbol = player2.getSymbol();
-                        }else {
-                            currentPlayerPseudo = player1.getPseudo();
-                            currentPlayerSymbol = player1.getSymbol();
-                        }
+                        currentPlayer = Joueur.playerSwitch(currentPlayer, player1, player2);
 
-                        //play = false;
-                        //break;
                     }
 
                     break;
-
 
                 case "3":
                     System.out.println("Voici le top 10");
@@ -168,10 +158,6 @@ public class Jeu {
             }
 
         }
-
-        //Grille grille = new Grille();
-
-        //grille.affichageGrille();
 
     }
 

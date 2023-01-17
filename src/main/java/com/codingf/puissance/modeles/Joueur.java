@@ -34,4 +34,15 @@ public class Joueur {
                 ", symbol=" + symbol +
                 '}';
     }
+
+    public static Joueur playerSwitch(Joueur currentPlayer, Joueur player1, Joueur player2) {
+        if (currentPlayer.getPseudo().equals(player1.getPseudo())){
+            currentPlayer = player2;
+        }
+        else {
+            currentPlayer = player1;
+        }
+        return currentPlayer;
+    }
+
 }

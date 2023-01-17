@@ -12,6 +12,8 @@ public class Grille {
 
     public void affichageGrille() {
 
+        System.out.println("  1   2   3   4   5   6   7");
+
         System.out.println("╔═══╦═══╦═══╦═══╦═══╦═══╦═══╗");
         for (int i = 0 ; i < 6; i++ ){
             for (int j = 0 ; j < 7 ; j++){
