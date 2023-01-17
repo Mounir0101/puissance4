@@ -6,9 +6,12 @@ public class Joueur {
 
     private char symbol;
 
-    public Joueur(String pseudo, char symbol) {
+    private int turn;
+
+    public Joueur(String pseudo, char symbol, int turn) {
         this.pseudo = pseudo;
         this.symbol = symbol;
+        this.turn = turn;
     }
 
     public String getPseudo() {
@@ -25,6 +28,14 @@ public class Joueur {
 
     public void setSymbol(char symbol) {
         this.symbol = symbol;
+    }
+
+    public int getTurn() {
+        return turn;
+    }
+
+    public void setTurn(int turn) {
+        this.turn = turn;
     }
 
     @Override
