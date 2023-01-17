@@ -92,7 +92,7 @@ public class JeuSeul {
                     casesList[line][iaColumn].setSymbol(currentPlayer.getSymbol());
                     currentPlayer.setTurn(currentPlayer.getTurn() + 1);
                 } catch (ArrayIndexOutOfBoundsException e) {
-                    //System.err.println("Choisissez une autre colonne");
+                    System.err.println("Choisissez une autre colonne");
                     continue;
                 }
             }

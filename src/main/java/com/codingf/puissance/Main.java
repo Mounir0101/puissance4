@@ -43,8 +43,8 @@ public class Main {
                     System.out.println("Voici le top 10");
 
                     ReadFile.readTop10();
+                    System.out.println();
 
-                    replay = false;
                     break;
 
                 case "4":

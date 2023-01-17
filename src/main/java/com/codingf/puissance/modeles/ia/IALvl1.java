@@ -13,7 +13,6 @@ public class IALvl1 extends IA{
     public static int iaPlay() {
         Random rand = new Random();
         int column = rand.nextInt(7);
-        column += 1;
         return column;
     }
 
