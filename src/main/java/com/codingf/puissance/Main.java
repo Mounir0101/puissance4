@@ -40,7 +40,7 @@ public class Main {
                     break;
 
                 case "3":
-                    System.out.println("Voici le top 10");
+                    //System.out.println("Voici le top 10");
 
                     ReadFile.readTop10();
                     System.out.println();

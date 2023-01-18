@@ -24,41 +24,53 @@ public class ReadFile {
 
             }
 
-            List sortedKeys=new ArrayList(top.values());
-            List sortedGrid = SortFile.tri_insertion(sortedKeys);
+            if (top.size() != 0) {
 
-            List<String> nameList = new ArrayList<>();
-            List<Integer> numList = new ArrayList<>();
+                List sortedKeys = new ArrayList(top.values());
+                List sortedGrid = SortFile.tri_insertion(sortedKeys);
 
-            int iterator = 0;
+                List<String> nameList = new ArrayList<>();
+                List<Integer> numList = new ArrayList<>();
 
-            for (Object key : sortedGrid) {
+                int iterator = 0;
 
-                String thing = "";
+                System.out.println("Voici le top 10");
 
-                for (Map.Entry mapentry : top.entrySet()) {
+                for (Object key : sortedGrid) {
 
-                    if (mapentry.getValue().equals(key)) {
-                        if (!nameList.contains(mapentry.getKey().toString())) {
-                            thing = mapentry.getKey().toString();
-                            nameList.add(mapentry.getKey().toString());
-                            numList.add((int)mapentry.getValue());
-                            break;
+                    String thing = "";
+
+                    for (Map.Entry mapentry : top.entrySet()) {
+
+                        if (mapentry.getValue().equals(key)) {
+                            if (!nameList.contains(mapentry.getKey().toString())) {
+                                thing = mapentry.getKey().toString();
+                                nameList.add(mapentry.getKey().toString());
+                                numList.add((int) mapentry.getValue());
+                                break;
+                            }
                         }
                     }
-                }
-                iterator++;
-                System.out.println(iterator + " : " + thing + " a gagné en " + key + " coups");
-                System.out.println(nameList);
-                if (iterator > 2) {
-                    if (!numList.get(iterator-2).equals(numList.get(iterator-3))) {
-                        nameList.clear();
+                    iterator++;
+                    System.out.println(iterator + " : " + thing + " a gagné en " + key + " coups");
+                    //System.out.println(nameList);
+                    //System.out.println(sortedGrid.get(iterator-1));
+                    //System.out.println(numList.get(iterator-1));
+                    if (iterator > 1) {
+                        if (!sortedGrid.get(iterator).equals(sortedGrid.get(iterator - 1))) {
+                            //System.out.println("not equal");
+                            nameList.clear();
+                        }
+                    }
+
+                    if (iterator == 10) {
+                        break;
                     }
                 }
+            }
 
-                if (iterator == 10) {
-                    break;
-                }
+            else {
+                System.out.println("Il n'y a aucun score enregistré");
             }
 
         }

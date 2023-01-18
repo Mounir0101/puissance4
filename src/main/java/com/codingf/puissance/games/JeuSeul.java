@@ -99,8 +99,8 @@ public class JeuSeul {
 
             turn += 1;
 
-            if (Victoire.lineVictory(casesList) || Victoire.columnVictory(casesList) ||
-                    Victoire.diagTLBRVictory(casesList) || Victoire.diagTRBLVictory(casesList)) {
+            if (Victoire.lineVictory(casesList).isVictory() || Victoire.columnVictory(casesList).isVictory() ||
+                    Victoire.diagTLBRVictory(casesList).isVictory() || Victoire.diagTRBLVictory(casesList).isVictory()) {
                 play = false;
                 grille.affichageGrille();
                 System.out.println();
