@@ -27,7 +27,7 @@ public class ReadFile {
             if (top.size() != 0) {
 
                 List sortedKeys = new ArrayList(top.values());
-                List sortedGrid = SortFile.tri_insertion(sortedKeys);
+                List sortedGrid = SortList.tri_insertion(sortedKeys);
 
                 List<String> nameList = new ArrayList<>();
                 List<Integer> numList = new ArrayList<>();

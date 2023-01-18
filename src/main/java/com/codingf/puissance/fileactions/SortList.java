@@ -2,7 +2,7 @@ package com.codingf.puissance.fileactions;
 
 import java.util.List;
 
-public class SortFile {
+public class SortList {
 
     public static List tri_insertion (List tableau) {
 

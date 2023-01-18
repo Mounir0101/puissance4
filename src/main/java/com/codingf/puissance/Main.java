@@ -28,6 +28,7 @@ public class Main {
             switch (reponseInput) {
 
                 case "1":
+
                     JeuSeul.singlePlayer(casesList);
 
                     break;
@@ -39,7 +40,6 @@ public class Main {
                     break;
 
                 case "3":
-                    //System.out.println("Voici le top 10");
 
                     ReadFile.readTop10();
                     System.out.println();

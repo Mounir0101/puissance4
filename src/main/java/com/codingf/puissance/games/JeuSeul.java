@@ -5,10 +5,12 @@ import com.codingf.puissance.fonctions.Victoire;
 import com.codingf.puissance.modeles.Cases;
 import com.codingf.puissance.modeles.Grille;
 import com.codingf.puissance.modeles.Joueur;
+import com.codingf.puissance.modeles.VictoryChecker;
 import com.codingf.puissance.modeles.ia.IA;
 import com.codingf.puissance.modeles.ia.IALvl1;
 import com.codingf.puissance.modeles.ia.IALvl2;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class JeuSeul {
@@ -22,10 +24,25 @@ public class JeuSeul {
             }
         }
 
-        Scanner level = new Scanner(System.in);
-        System.out.println("Contre quel niveau d'Ia voulez-vous jouer ?");
-        int iaLvl = level.nextInt();
-        
+        int iaLvl;
+
+        while (true) {
+            Scanner level = new Scanner(System.in);
+            System.out.println("Contre quel niveau d'Ia voulez-vous jouer ? (1 ou 2)");
+            try {
+                iaLvl = level.nextInt();
+                if (iaLvl != 1 && iaLvl != 2) {
+                    System.out.println("Le niveau de l'ia peut être de 1 ou 2");
+                }
+                else {
+                    break;
+                }
+            }
+            catch (InputMismatchException e) {
+                System.out.println("Sélectionnez un nombre valide (1 ou 2)");
+            }
+
+        }
 
         Grille grille = new Grille(casesList);
 
@@ -34,20 +51,32 @@ public class JeuSeul {
         Scanner player = new Scanner(System.in);
         System.out.println("Choisissez votre pseudo");
         String playerPseudo = player.nextLine();
-        System.out.println("Choisissez votre symbole");
-        char playerSymbol = player.nextLine().charAt(0);
+
+        char playerSymbol;
+
+        while (true) {
+            System.out.println("Choisissez votre symbole");
+            playerSymbol = player.nextLine().charAt(0);
+            if (playerSymbol == '@') {
+                System.out.println("Désolé, ce symbole est réservé pour l'ordi");
+            }
+            else {
+                break;
+            }
+        }
 
         Joueur joueur = new Joueur(playerPseudo, playerSymbol, 1);
         IA ia = new IA("Ordi", '@', 0);
 
         var currentPlayer = new Joueur(joueur.getPseudo(), joueur.getSymbol(), joueur.getTurn());
+        VictoryChecker vic = new VictoryChecker(false);
         boolean play = true;
         int turn = 0;
         Scanner input = new Scanner(System.in);
 
         while (play) {
 
-            grille.affichageGrille();
+            grille.affichageGrille(vic);
 
             int line = 5;
 
@@ -117,8 +146,20 @@ public class JeuSeul {
 
             if (Victoire.lineVictory(casesList).isVictory() || Victoire.columnVictory(casesList).isVictory() ||
                     Victoire.diagTLBRVictory(casesList).isVictory() || Victoire.diagTRBLVictory(casesList).isVictory()) {
+                if (Victoire.lineVictory(casesList).isVictory()) {
+                    vic = Victoire.lineVictory(casesList);
+                }
+                if (Victoire.columnVictory(casesList).isVictory()) {
+                    vic = Victoire.columnVictory(casesList);
+                }
+                if (Victoire.diagTLBRVictory(casesList).isVictory()) {
+                    vic = Victoire.diagTLBRVictory(casesList);
+                }
+                if (Victoire.diagTRBLVictory(casesList).isVictory()) {
+                    vic = Victoire.diagTRBLVictory(casesList);
+                }
                 play = false;
-                grille.affichageGrille();
+                grille.affichageGrille(vic);
                 System.out.println();
                 System.out.println("Victoire de " + currentPlayer.getPseudo() + " en "+currentPlayer.getTurn()+ " coups\n");
 
@@ -127,7 +168,7 @@ public class JeuSeul {
             }
 
             if (turn == 42 && play) {
-                grille.affichageGrille();
+                grille.affichageGrille(vic);
                 System.out.println();
                 System.out.println("Egalité, fin de la partie\n");
                 play = false;

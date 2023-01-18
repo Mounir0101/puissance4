@@ -5,6 +5,7 @@ import com.codingf.puissance.fonctions.Victoire;
 import com.codingf.puissance.modeles.Cases;
 import com.codingf.puissance.modeles.Grille;
 import com.codingf.puissance.modeles.Joueur;
+import com.codingf.puissance.modeles.VictoryChecker;
 
 import java.util.Scanner;
 
@@ -50,13 +51,14 @@ public class JeuA2 {
         System.out.println(player2);
 
         Joueur currentPlayer = new Joueur(player1.getPseudo(), player1.getSymbol(), player1.getTurn());
+        VictoryChecker vic = new VictoryChecker(false);
         boolean play = true;
         int turn = 0;
         Scanner input = new Scanner(System.in);
 
         while (play) {
 
-            grille.affichageGrille();
+            grille.affichageGrille(vic);
 
             int line = 5;
 
@@ -96,8 +98,20 @@ public class JeuA2 {
 
             if (Victoire.lineVictory(casesList).isVictory() || Victoire.columnVictory(casesList).isVictory() ||
                     Victoire.diagTLBRVictory(casesList).isVictory() || Victoire.diagTRBLVictory(casesList).isVictory()) {
+                if (Victoire.lineVictory(casesList).isVictory()) {
+                    vic = Victoire.lineVictory(casesList);
+                }
+                if (Victoire.columnVictory(casesList).isVictory()) {
+                    vic = Victoire.columnVictory(casesList);
+                }
+                if (Victoire.diagTLBRVictory(casesList).isVictory()) {
+                    vic = Victoire.diagTLBRVictory(casesList);
+                }
+                if (Victoire.diagTRBLVictory(casesList).isVictory()) {
+                    vic = Victoire.diagTRBLVictory(casesList);
+                }
                 play = false;
-                grille.affichageGrille();
+                grille.affichageGrille(vic);
                 System.out.println();
                 System.out.println("Victoire de " + currentPlayer.getPseudo() + " en "+currentPlayer.getTurn()+ " coups\n");
 
@@ -106,7 +120,7 @@ public class JeuA2 {
             }
 
             if (turn == 42 && play) {
-                grille.affichageGrille();
+                grille.affichageGrille(vic);
                 System.out.println();
                 System.out.println("Egalité, fin de la partie\n");
                 play = false;
