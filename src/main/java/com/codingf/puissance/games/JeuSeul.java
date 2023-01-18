@@ -22,6 +22,11 @@ public class JeuSeul {
             }
         }
 
+        Scanner level = new Scanner(System.in);
+        System.out.println("Contre quel niveau d'Ia voulez-vous jouer ?");
+        int iaLvl = level.nextInt();
+        
+
         Grille grille = new Grille(casesList);
 
         System.out.println("Vous allez jouer seul");
@@ -82,7 +87,15 @@ public class JeuSeul {
 
             else {
 
-                int iaColumn = IALvl2.linePlacement(casesList);
+                //int iaColumn = IALvl2.linePlacement(casesList);
+                
+                int iaColumn = 0;
+                
+                if (iaLvl == 1) {
+                    iaColumn = IALvl1.iaPlay();
+                } else if (iaLvl == 2) {
+                    iaColumn = IALvl2.iaPlay2(casesList);
+                }
 
                 //int iaColumn = IALvl1.iaPlay();
 
