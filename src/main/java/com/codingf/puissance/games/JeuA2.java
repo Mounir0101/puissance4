@@ -12,7 +12,7 @@ import java.util.Scanner;
 public class JeuA2 {
 
     public static void twoPlayers(Cases[][] casesList) {
-
+        // initialisation des cases
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 7; j++) {
                 Cases square = new Cases(i, j, ' ');
@@ -22,6 +22,7 @@ public class JeuA2 {
 
         Grille grille = new Grille(casesList);
 
+        // menu pour les joueurs
         System.out.println("Vous jouez à 2");
 
         Scanner players = new Scanner(System.in);
@@ -56,6 +57,7 @@ public class JeuA2 {
         int turn = 0;
         Scanner input = new Scanner(System.in);
 
+        // boucle principale du jeu
         while (play) {
 
             grille.affichageGrille(vic);
@@ -95,7 +97,7 @@ public class JeuA2 {
             }
 
             turn += 1;
-
+            // verification de victoire
             if (Victoire.lineVictory(casesList).isVictory() || Victoire.columnVictory(casesList).isVictory() ||
                     Victoire.diagTLBRVictory(casesList).isVictory() || Victoire.diagTRBLVictory(casesList).isVictory()) {
                 if (Victoire.lineVictory(casesList).isVictory()) {
@@ -119,6 +121,7 @@ public class JeuA2 {
 
             }
 
+            // verification d'égalité
             if (turn == 42 && play) {
                 grille.affichageGrille(vic);
                 System.out.println();

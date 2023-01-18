@@ -18,6 +18,7 @@ public class Main {
 
         while (replay) {
 
+            // Menu Principal
             System.out.println("1- Jouer tout seul");
             System.out.println("2- Jouer à deux ");
             System.out.println("3- Afficher le Top 10");
@@ -27,25 +28,30 @@ public class Main {
 
             switch (reponseInput) {
 
+                // Jouer avec l'IA
                 case "1":
 
                     JeuSeul.singlePlayer(casesList);
 
                     break;
 
+                // Jouer avec deux joueurs
                 case "2":
 
                     JeuA2.twoPlayers(casesList);
 
                     break;
 
+                // Consulter le top 10
                 case "3":
+
 
                     ReadFile.readTop10();
                     System.out.println();
 
                     break;
 
+                // Quitter la partie
                 case "4":
                     System.out.println("Salut");
                     System.exit(0);
