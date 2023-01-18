@@ -82,7 +82,7 @@ public class JeuSeul {
 
             else {
 
-                int iaColumn = IALvl2.columnPlacement(casesList);
+                int iaColumn = IALvl2.linePlacement(casesList);
 
                 //int iaColumn = IALvl1.iaPlay();
 
