@@ -28,7 +28,6 @@ public class Main {
             switch (reponseInput) {
 
                 case "1":
-                    //System.out.println("Vous allez jouer seul");
                     JeuSeul.singlePlayer(casesList);
 
                     break;

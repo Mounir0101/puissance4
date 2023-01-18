@@ -7,6 +7,7 @@ import com.codingf.puissance.modeles.Grille;
 import com.codingf.puissance.modeles.Joueur;
 import com.codingf.puissance.modeles.ia.IA;
 import com.codingf.puissance.modeles.ia.IALvl1;
+import com.codingf.puissance.modeles.ia.IALvl2;
 
 import java.util.Scanner;
 
@@ -81,7 +82,9 @@ public class JeuSeul {
 
             else {
 
-                int iaColumn = IALvl1.iaPlay();
+                int iaColumn = IALvl2.columnPlacement(casesList);
+
+                //int iaColumn = IALvl1.iaPlay();
 
                 try {
 

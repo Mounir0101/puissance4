@@ -9,10 +9,8 @@ public class Victoire {
 
     public static VictoryChecker lineVictory(Cases[][] casesList) {
 
-        int i;
-        int j = 0;
-        for (i = 0; i < 6; i++) {
-            for (j = 0; j < 4; j++) {
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 4; j++) {
                 if (casesList[i][j].getSymbol() == casesList[i][j + 1].getSymbol() &&
                         casesList[i][j].getSymbol() == casesList[i][j + 2].getSymbol() &&
                         casesList[i][j].getSymbol() == casesList[i][j + 3].getSymbol() &&
@@ -26,10 +24,8 @@ public class Victoire {
 
     public static VictoryChecker columnVictory(Cases[][] casesList) {
 
-        int i;
-        int j = 0;
-        for (i = 0; i < 3; i++) {
-            for (j = 0; j < 7; j++) {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 7; j++) {
                 if (casesList[i][j].getSymbol() == casesList[i + 1][j].getSymbol() &&
                         casesList[i][j].getSymbol() == casesList[i + 2][j].getSymbol() &&
                         casesList[i][j].getSymbol() == casesList[i + 3][j].getSymbol() &&
@@ -43,10 +39,8 @@ public class Victoire {
 
     public static VictoryChecker diagTLBRVictory(Cases[][] casesList) {
 
-        int i;
-        int j = 0;
-        for (i = 0; i < 3; i++) {
-            for (j = 0; j < 4; j++) {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 4; j++) {
                 if (casesList[i][j].getSymbol() == casesList[i + 1][j + 1].getSymbol() &&
                         casesList[i][j].getSymbol() == casesList[i + 2][j + 2].getSymbol() &&
                         casesList[i][j].getSymbol() == casesList[i + 3][j + 3].getSymbol() &&
@@ -60,10 +54,8 @@ public class Victoire {
 
     public static VictoryChecker diagTRBLVictory(Cases[][] casesList) {
 
-        int i;
-        int j = 0;
-        for (i = 5; i > 2; i--) {
-            for (j = 0; j < 4; j++) {
+        for (int i = 5; i > 2; i--) {
+            for (int j = 0; j < 4; j++) {
                 if (casesList[i][j].getSymbol() == casesList[i - 1][j + 1].getSymbol() &&
                         casesList[i][j].getSymbol() == casesList[i - 2][j + 2].getSymbol() &&
                         casesList[i][j].getSymbol() == casesList[i - 3][j + 3].getSymbol() &&

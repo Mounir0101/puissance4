@@ -56,12 +56,12 @@ public class ReadFile {
                     //System.out.println(nameList);
                     //System.out.println(sortedGrid.get(iterator-1));
                     //System.out.println(numList.get(iterator-1));
-                    if (iterator > 1) {
+                    /*if (iterator > 1) {
                         if (!sortedGrid.get(iterator).equals(sortedGrid.get(iterator - 1))) {
                             //System.out.println("not equal");
                             nameList.clear();
                         }
-                    }
+                    }*/
 
                     if (iterator == 10) {
                         break;
