@@ -22,32 +22,44 @@ public class ReadFile {
 
                 top.put(infos[0], Integer.valueOf(infos[1]));
 
-                //System.out.println(infos[0] + " a gagné en " + infos[1] + " coups");
             }
 
             List sortedKeys=new ArrayList(top.values());
             List sortedGrid = SortFile.tri_insertion(sortedKeys);
-            //Collections.sort(sortedKeys);
+
+            List<String> nameList = new ArrayList<>();
+            List<Integer> numList = new ArrayList<>();
+
+            int iterator = 0;
 
             for (Object key : sortedGrid) {
+
                 String thing = "";
 
                 for (Map.Entry mapentry : top.entrySet()) {
 
                     if (mapentry.getValue().equals(key)) {
-                        System.out.println(mapentry.getKey());
-                        thing = mapentry.getKey().toString();
-                        //top.remove(mapentry.getKey().toString());
+                        if (!nameList.contains(mapentry.getKey().toString())) {
+                            thing = mapentry.getKey().toString();
+                            nameList.add(mapentry.getKey().toString());
+                            numList.add((int)mapentry.getValue());
+                            break;
+                        }
                     }
                 }
-                System.out.println(thing + " a gagné en " + key + " coups");
-            }
+                iterator++;
+                System.out.println(iterator + " : " + thing + " a gagné en " + key + " coups");
+                System.out.println(nameList);
+                if (iterator > 2) {
+                    if (!numList.get(iterator-2).equals(numList.get(iterator-3))) {
+                        nameList.clear();
+                    }
+                }
 
-            /*SortedSet<Integer> keys = new TreeSet<>(top.keySet());
-            for (Integer key : keys) {
-                String value = top.get(key);
-                System.out.println(value + " a gagné en " + key);
-            }*/
+                if (iterator == 10) {
+                    break;
+                }
+            }
 
         }
         catch (IOException e) {
