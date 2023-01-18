@@ -80,54 +80,25 @@ public class JeuSeul {
             grille.affichageGrille(vic);
 
             int line = 5;
-            // tour du jouer
+            // Tour du joueur
             if (currentPlayer.getPseudo().equals(joueur.getPseudo())) {
 
-                System.out.println("Sélectionnez une colonne " + currentPlayer.getPseudo());
-                String numColInput = input.next();
+                PlayerTurn.playerTurn(currentPlayer, casesList, line);
 
-                int numCol;
-
-                try {
-                    numCol = Integer.parseInt(numColInput) - 1;
-                    if (numCol < 0 || numCol > 6) {
-                        System.out.println("Sélectionnez une colonne entre 1 et 7");
-                        continue;
-                    }
-
-                } catch (Exception e) {
-                    System.err.println("Veuillez entrer un nombre valide");
-                    continue;
-                }
-
-                try {
-
-                    while (casesList[line][numCol].getSymbol() != ' ') {
-                        line--;
-                    }
-
-                    casesList[line][numCol].setSymbol(currentPlayer.getSymbol());
-                    currentPlayer.setTurn(currentPlayer.getTurn() + 1);
-                }
-                catch (ArrayIndexOutOfBoundsException e) {
-                    System.err.println("Choisissez une autre colonne");
-                    continue;
-                }
             }
 
             else {
 
-                // tour de L'ia
+                // Tour de l'ia
                 
                 int iaColumn = 0;
                 
                 if (iaLvl == 1) {
                     iaColumn = IALvl1.iaPlay();
-                } else if (iaLvl == 2) {
+                }
+                else if (iaLvl == 2) {
                     iaColumn = IALvl2.iaPlay2(casesList);
                 }
-
-
 
                 try {
 
@@ -144,8 +115,13 @@ public class JeuSeul {
             }
 
             turn += 1;
+
+            if (!Victoire.mainChecker(vic, casesList, currentPlayer, grille)) {
+                play = false;
+            }
+
             // verifier la victoire
-            if (Victoire.lineVictory(casesList).isVictory() || Victoire.columnVictory(casesList).isVictory() ||
+            /*if (Victoire.lineVictory(casesList).isVictory() || Victoire.columnVictory(casesList).isVictory() ||
                     Victoire.diagTLBRVictory(casesList).isVictory() || Victoire.diagTRBLVictory(casesList).isVictory()) {
                 if (Victoire.lineVictory(casesList).isVictory()) {
                     vic = Victoire.lineVictory(casesList);
@@ -166,7 +142,7 @@ public class JeuSeul {
 
                 WriteFile.writeTop10(currentPlayer);
 
-            }
+            }*/
 
             if (turn == 42 && play) {
                 grille.affichageGrille(vic);

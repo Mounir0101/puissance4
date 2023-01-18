@@ -64,62 +64,15 @@ public class JeuA2 {
 
             int line = 5;
 
-            // demander au joueur quelle colonne il veut
-            System.out.println("Sélectionnez une colonne "+currentPlayer.getPseudo());
-            String numColInput = input.next();
-
-            int numCol;
-
-            try {
-                numCol = Integer.parseInt(numColInput)-1;
-                if (numCol < 0 || numCol > 6) {
-                    System.out.println("selectionner une colonne entre 1 et 7");
-                    continue;
-                }
-
-            }
-            catch (Exception e) {
-                System.err.println("Veuillez entrer un nombre valide");
-                continue;
-            }
-
-            try {
-
-                while (casesList[line][numCol].getSymbol() != ' ' ) {
-                    line --;
-                }
-
-                casesList[line][numCol].setSymbol(currentPlayer.getSymbol());
-                currentPlayer.setTurn(currentPlayer.getTurn()+1);
-            }
-            catch (ArrayIndexOutOfBoundsException e){
-                System.err.println("Choisissez une autre colonne");
+            if (!PlayerTurn.playerTurn(currentPlayer, casesList, line)) {
                 continue;
             }
 
             turn += 1;
-            // verification de victoire
-            if (Victoire.lineVictory(casesList).isVictory() || Victoire.columnVictory(casesList).isVictory() ||
-                    Victoire.diagTLBRVictory(casesList).isVictory() || Victoire.diagTRBLVictory(casesList).isVictory()) {
-                if (Victoire.lineVictory(casesList).isVictory()) {
-                    vic = Victoire.lineVictory(casesList);
-                }
-                if (Victoire.columnVictory(casesList).isVictory()) {
-                    vic = Victoire.columnVictory(casesList);
-                }
-                if (Victoire.diagTLBRVictory(casesList).isVictory()) {
-                    vic = Victoire.diagTLBRVictory(casesList);
-                }
-                if (Victoire.diagTRBLVictory(casesList).isVictory()) {
-                    vic = Victoire.diagTRBLVictory(casesList);
-                }
+
+            // Vérifications de victoire
+            if (!Victoire.mainChecker(vic, casesList, currentPlayer, grille)) {
                 play = false;
-                grille.affichageGrille(vic);
-                System.out.println();
-                System.out.println("Victoire de " + currentPlayer.getPseudo() + " en "+currentPlayer.getTurn()+ " coups\n");
-
-                WriteFile.writeTop10(currentPlayer);
-
             }
 
             // verification d'égalité

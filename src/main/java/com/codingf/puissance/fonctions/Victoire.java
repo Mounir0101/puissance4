@@ -1,6 +1,9 @@
 package com.codingf.puissance.fonctions;
 
+import com.codingf.puissance.fileactions.WriteFile;
 import com.codingf.puissance.modeles.Cases;
+import com.codingf.puissance.modeles.Grille;
+import com.codingf.puissance.modeles.Joueur;
 import com.codingf.puissance.modeles.VictoryChecker;
 
 public class Victoire {
@@ -66,5 +69,37 @@ public class Victoire {
         }
         return victory = new VictoryChecker(false);
     }
+
+    public static boolean mainChecker(VictoryChecker vic, Cases[][] casesList, Joueur currentPlayer, Grille grille) {
+
+        if (Victoire.lineVictory(casesList).isVictory() || Victoire.columnVictory(casesList).isVictory() ||
+                Victoire.diagTLBRVictory(casesList).isVictory() || Victoire.diagTRBLVictory(casesList).isVictory()) {
+            if (Victoire.lineVictory(casesList).isVictory()) {
+                vic = Victoire.lineVictory(casesList);
+            }
+            if (Victoire.columnVictory(casesList).isVictory()) {
+                vic = Victoire.columnVictory(casesList);
+            }
+            if (Victoire.diagTLBRVictory(casesList).isVictory()) {
+                vic = Victoire.diagTLBRVictory(casesList);
+            }
+            if (Victoire.diagTRBLVictory(casesList).isVictory()) {
+                vic = Victoire.diagTRBLVictory(casesList);
+            }
+            //play = false;
+            grille.affichageGrille(vic);
+            System.out.println();
+            System.out.println("Victoire de " + currentPlayer.getPseudo() + " en "+currentPlayer.getTurn()+ " coups\n");
+
+            WriteFile.writeTop10(currentPlayer);
+
+            return false;
+
+        }
+
+        return true;
+
+    }
+
 
 }

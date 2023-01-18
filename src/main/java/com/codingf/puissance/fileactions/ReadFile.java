@@ -8,6 +8,7 @@ import java.util.*;
 public class ReadFile {
 
     public static void readTop10() {
+
         try {
             BufferedReader top10 = new BufferedReader(new FileReader("top10.txt"));
             Scanner fileScan = new Scanner(top10);
@@ -30,7 +31,6 @@ public class ReadFile {
                 List sortedGrid = SortList.tri_insertion(sortedKeys);
 
                 List<String> nameList = new ArrayList<>();
-                List<Integer> numList = new ArrayList<>();
 
                 int iterator = 0;
 
@@ -46,22 +46,12 @@ public class ReadFile {
                             if (!nameList.contains(mapentry.getKey().toString())) {
                                 thing = mapentry.getKey().toString();
                                 nameList.add(mapentry.getKey().toString());
-                                numList.add((int) mapentry.getValue());
                                 break;
                             }
                         }
                     }
                     iterator++;
                     System.out.println(iterator + " : " + thing + " a gagné en " + key + " coups");
-                    //System.out.println(nameList);
-                    //System.out.println(sortedGrid.get(iterator-1));
-                    //System.out.println(numList.get(iterator-1));
-                    /*if (iterator > 1) {
-                        if (!sortedGrid.get(iterator).equals(sortedGrid.get(iterator - 1))) {
-                            //System.out.println("not equal");
-                            nameList.clear();
-                        }
-                    }*/
 
                     if (iterator == 10) {
                         break;

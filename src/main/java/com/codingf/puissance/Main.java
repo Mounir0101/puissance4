@@ -12,11 +12,10 @@ public class Main {
     public static void main(String[] args) {
 
         Scanner input = new Scanner(System.in);
-        boolean replay = true;
 
         Cases[][] casesList = new Cases[6][7];
 
-        while (replay) {
+        while (true) {
 
             // Menu Principal
             System.out.println("1- Jouer tout seul");
@@ -45,7 +44,6 @@ public class Main {
                 // Consulter le top 10
                 case "3":
 
-
                     ReadFile.readTop10();
                     System.out.println();
 
@@ -53,6 +51,7 @@ public class Main {
 
                 // Quitter la partie
                 case "4":
+
                     System.out.println("Salut");
                     System.exit(0);
 
