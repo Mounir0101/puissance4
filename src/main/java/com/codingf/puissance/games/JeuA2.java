@@ -25,7 +25,7 @@ public class JeuA2 {
         // menu pour les joueurs
         System.out.println("Vous jouez à 2");
 
-        Scanner players = new Scanner(System.in);
+        /*Scanner players = new Scanner(System.in);
         System.out.println("Joueur 1, choisissez votre pseudo");
         String player1Pseudo = players.nextLine();
         System.out.println("Joueur 1, choisissez votre symbole");
@@ -43,10 +43,12 @@ public class JeuA2 {
             } else {
                 break;
             }
-        }
+        }*/
 
-        Joueur player1 = new Joueur(player1Pseudo, player1Symbol, 1);
-        Joueur player2 = new Joueur(player2Pseudo, player2Symbol, 0);
+        Joueur[] playerList = InitPlayers.players2();
+
+        Joueur player1 = playerList[0];
+        Joueur player2 = playerList[1];
 
         System.out.println(player1);
         System.out.println(player2);
@@ -71,9 +73,7 @@ public class JeuA2 {
             turn += 1;
 
             // Vérifications de victoire
-            if (!Victoire.mainChecker(vic, casesList, currentPlayer, grille)) {
-                play = false;
-            }
+            play = Victoire.mainChecker(vic, casesList, currentPlayer, grille);
 
             // verification d'égalité
             if (turn == 42 && play) {

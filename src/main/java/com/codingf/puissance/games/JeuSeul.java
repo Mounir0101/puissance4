@@ -48,25 +48,8 @@ public class JeuSeul {
 
         System.out.println("Vous allez jouer seul");
 
-        //initiation du joueur
-        Scanner player = new Scanner(System.in);
-        System.out.println("Choisissez votre pseudo");
-        String playerPseudo = player.nextLine();
-
-        char playerSymbol;
-
-        while (true) {
-            System.out.println("Choisissez votre symbole");
-            playerSymbol = player.nextLine().charAt(0);
-            if (playerSymbol == '@') {
-                System.out.println("Désolé, ce symbole est réservé pour l'ordi");
-            }
-            else {
-                break;
-            }
-        }
-        // creation du joueur et de l'ia
-        Joueur joueur = new Joueur(playerPseudo, playerSymbol, 1);
+        // Creation du joueur et de l'ia
+        Joueur joueur = InitPlayers.player1();
         IA ia = new IA("Ordi", '@', 0);
 
         var currentPlayer = new Joueur(joueur.getPseudo(), joueur.getSymbol(), joueur.getTurn());
@@ -83,15 +66,21 @@ public class JeuSeul {
             // Tour du joueur
             if (currentPlayer.getPseudo().equals(joueur.getPseudo())) {
 
-                PlayerTurn.playerTurn(currentPlayer, casesList, line);
+                if (!PlayerTurn.playerTurn(currentPlayer, casesList, line)) {
+                    continue;
+                }
 
             }
 
             else {
 
+                if (!IA.iaTurn(casesList, iaLvl, currentPlayer, line)) {
+                    continue;
+                }
+
                 // Tour de l'ia
                 
-                int iaColumn = 0;
+                /*int iaColumn = 0;
                 
                 if (iaLvl == 1) {
                     iaColumn = IALvl1.iaPlay();
@@ -111,38 +100,12 @@ public class JeuSeul {
                 } catch (ArrayIndexOutOfBoundsException e) {
                     System.err.println("Choisissez une autre colonne");
                     continue;
-                }
+                }*/
             }
 
             turn += 1;
 
-            if (!Victoire.mainChecker(vic, casesList, currentPlayer, grille)) {
-                play = false;
-            }
-
-            // verifier la victoire
-            /*if (Victoire.lineVictory(casesList).isVictory() || Victoire.columnVictory(casesList).isVictory() ||
-                    Victoire.diagTLBRVictory(casesList).isVictory() || Victoire.diagTRBLVictory(casesList).isVictory()) {
-                if (Victoire.lineVictory(casesList).isVictory()) {
-                    vic = Victoire.lineVictory(casesList);
-                }
-                if (Victoire.columnVictory(casesList).isVictory()) {
-                    vic = Victoire.columnVictory(casesList);
-                }
-                if (Victoire.diagTLBRVictory(casesList).isVictory()) {
-                    vic = Victoire.diagTLBRVictory(casesList);
-                }
-                if (Victoire.diagTRBLVictory(casesList).isVictory()) {
-                    vic = Victoire.diagTRBLVictory(casesList);
-                }
-                play = false;
-                grille.affichageGrille(vic);
-                System.out.println();
-                System.out.println("Victoire de " + currentPlayer.getPseudo() + " en "+currentPlayer.getTurn()+ " coups\n");
-
-                WriteFile.writeTop10(currentPlayer);
-
-            }*/
+            play = Victoire.mainChecker(vic, casesList, currentPlayer, grille);
 
             if (turn == 42 && play) {
                 grille.affichageGrille(vic);

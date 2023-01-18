@@ -20,7 +20,6 @@ public class IALvl2 extends IALvl1{
                         casesList[i + 1][j].getSymbol() == casesList[i + 2][j].getSymbol() &&
                         casesList[i + 1][j].getSymbol() == casesList[i + 3][j].getSymbol() &&
                         casesList[i][j].getSymbol() == ' ') {
-                    System.out.println("faut mettre a la colonne " + j);
                     return new Align3(true, j);
                 }
             }
@@ -36,7 +35,6 @@ public class IALvl2 extends IALvl1{
                         casesList[i][j].getSymbol() == casesList[i][j+1].getSymbol() &&
                         casesList[i][j].getSymbol() != ' ') {
                     if ((j == 1 || j == 5) && casesList[i][3].getSymbol() == ' ') {
-                        System.out.println("faut mettre a la colonne 3");
                         return new Align3(true, 3);
                     }
                     try {
@@ -50,9 +48,8 @@ public class IALvl2 extends IALvl1{
                         }
                     }
                     catch (ArrayIndexOutOfBoundsException e) {
-                    //else{
-                            return new Align3(false, 2);
-                    //    }
+
+                        return new Align3(false, 2);
                     }
 
                 }
@@ -71,8 +68,6 @@ public class IALvl2 extends IALvl1{
         else {
             return iaPlay();
         }
-        //columnPlacement(casesList);
-        //linePlacement(casesList);
 
     }
 
