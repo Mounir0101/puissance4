@@ -64,6 +64,7 @@ public class JeuA2 {
 
             int line = 5;
 
+            // demander au joueur quelle colonne il veut
             System.out.println("Sélectionnez une colonne "+currentPlayer.getPseudo());
             String numColInput = input.next();
 

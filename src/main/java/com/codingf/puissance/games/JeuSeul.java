@@ -16,7 +16,7 @@ import java.util.Scanner;
 public class JeuSeul {
 
     public static void singlePlayer(Cases[][] casesList) {
-
+    // initiation des cases
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 7; j++) {
                 Cases square = new Cases(i, j, ' ');
@@ -25,7 +25,7 @@ public class JeuSeul {
         }
 
         int iaLvl;
-
+        // menu pour jouer avec l'IA
         while (true) {
             Scanner level = new Scanner(System.in);
             System.out.println("Contre quel niveau d'Ia voulez-vous jouer ? (1 ou 2)");
@@ -48,6 +48,7 @@ public class JeuSeul {
 
         System.out.println("Vous allez jouer seul");
 
+        //initiation du joueur
         Scanner player = new Scanner(System.in);
         System.out.println("Choisissez votre pseudo");
         String playerPseudo = player.nextLine();
@@ -64,7 +65,7 @@ public class JeuSeul {
                 break;
             }
         }
-
+        // creation du joueur et de l'ia
         Joueur joueur = new Joueur(playerPseudo, playerSymbol, 1);
         IA ia = new IA("Ordi", '@', 0);
 
@@ -79,7 +80,7 @@ public class JeuSeul {
             grille.affichageGrille(vic);
 
             int line = 5;
-
+            // tour du jouer
             if (currentPlayer.getPseudo().equals(joueur.getPseudo())) {
 
                 System.out.println("Sélectionnez une colonne " + currentPlayer.getPseudo());
@@ -116,7 +117,7 @@ public class JeuSeul {
 
             else {
 
-                //int iaColumn = IALvl2.linePlacement(casesList);
+                // tour de L'ia
                 
                 int iaColumn = 0;
                 
@@ -126,7 +127,7 @@ public class JeuSeul {
                     iaColumn = IALvl2.iaPlay2(casesList);
                 }
 
-                //int iaColumn = IALvl1.iaPlay();
+
 
                 try {
 
@@ -143,7 +144,7 @@ public class JeuSeul {
             }
 
             turn += 1;
-
+            // verifier la victoire
             if (Victoire.lineVictory(casesList).isVictory() || Victoire.columnVictory(casesList).isVictory() ||
                     Victoire.diagTLBRVictory(casesList).isVictory() || Victoire.diagTRBLVictory(casesList).isVictory()) {
                 if (Victoire.lineVictory(casesList).isVictory()) {
