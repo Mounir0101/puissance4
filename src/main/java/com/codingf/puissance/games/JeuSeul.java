@@ -74,33 +74,11 @@ public class JeuSeul {
 
             else {
 
+                // Tour de l'ia
                 if (!IA.iaTurn(casesList, iaLvl, currentPlayer, line)) {
                     continue;
                 }
 
-                // Tour de l'ia
-                
-                /*int iaColumn = 0;
-                
-                if (iaLvl == 1) {
-                    iaColumn = IALvl1.iaPlay();
-                }
-                else if (iaLvl == 2) {
-                    iaColumn = IALvl2.iaPlay2(casesList);
-                }
-
-                try {
-
-                    while (casesList[line][iaColumn].getSymbol() != ' ') {
-                        line--;
-                    }
-
-                    casesList[line][iaColumn].setSymbol(currentPlayer.getSymbol());
-                    currentPlayer.setTurn(currentPlayer.getTurn() + 1);
-                } catch (ArrayIndexOutOfBoundsException e) {
-                    System.err.println("Choisissez une autre colonne");
-                    continue;
-                }*/
             }
 
             turn += 1;

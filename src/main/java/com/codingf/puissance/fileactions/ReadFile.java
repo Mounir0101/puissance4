@@ -26,10 +26,10 @@ public class ReadFile {
                 while (!add) {
 
                     if (top.containsKey(infos[0])) {
-                        System.out.println(infos[0] + "bonjour");
+                        //System.out.println(infos[0] + "bonjour");
                         infos[0] = " " + infos[0];
                         //top.put(infos[0], Integer.valueOf(infos[1]));
-                        System.out.println(infos[0] + "bonjour");
+                        //System.out.println(infos[0] + "bonjour");
                         //if (top.get(infos[0]) > Integer.parseInt(infos[1])) {
                         //    top.put(infos[0], Integer.valueOf(infos[1]));
                         //}

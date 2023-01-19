@@ -12,6 +12,7 @@ import java.util.Scanner;
 public class JeuA2 {
 
     public static void twoPlayers(Cases[][] casesList) {
+
         // initialisation des cases
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 7; j++) {
@@ -24,26 +25,6 @@ public class JeuA2 {
 
         // menu pour les joueurs
         System.out.println("Vous jouez à 2");
-
-        /*Scanner players = new Scanner(System.in);
-        System.out.println("Joueur 1, choisissez votre pseudo");
-        String player1Pseudo = players.nextLine();
-        System.out.println("Joueur 1, choisissez votre symbole");
-        char player1Symbol = players.nextLine().charAt(0);
-        System.out.println("Joueur 2, choisissez votre pseudo");
-        String player2Pseudo = players.nextLine();
-        char player2Symbol;
-
-        while (true) {
-            System.out.println("Joueur 2, choisissez votre symbole");
-            player2Symbol = players.nextLine().charAt(0);
-            if (player2Symbol == player1Symbol) {
-                System.out.println("Les deux joueurs ne peuvent pas avoir le même symbole");
-                continue;
-            } else {
-                break;
-            }
-        }*/
 
         Joueur[] playerList = InitPlayers.players2();
 
