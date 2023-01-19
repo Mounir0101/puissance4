@@ -7,6 +7,7 @@ import java.util.Scanner;
 public class InitPlayers {
 
     public static Joueur[] players2() {
+        // Initialisation des joueurs pour une partie à deux joueurs humains
 
         Scanner players = new Scanner(System.in);
         System.out.println("Joueur 1, choisissez votre pseudo");
@@ -36,6 +37,7 @@ public class InitPlayers {
     }
 
     public static Joueur player1() {
+        // Initialisation des joueurs pour une partie avec l'ordinateur
 
         Scanner player = new Scanner(System.in);
         System.out.println("Choisissez votre pseudo");

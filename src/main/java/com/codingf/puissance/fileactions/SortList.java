@@ -3,6 +3,7 @@ package com.codingf.puissance.fileactions;
 import java.util.List;
 
 public class SortList {
+    // Un tri par insertion pour classer les scores
 
     public static List tri_insertion (List tableau) {
 

@@ -10,6 +10,7 @@ public class IA extends Joueur {
     }
 
     public static boolean iaTurn(Cases[][] casesList, int iaLvl, Joueur currentPlayer, int line) {
+        // Fonction qui définit ce que l'ordi fait quand c'est son tour de jouer
 
         int iaColumn = 0;
 

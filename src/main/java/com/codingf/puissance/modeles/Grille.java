@@ -12,6 +12,7 @@ public class Grille {
     }
 
     public void affichageGrille(VictoryChecker vic) {
+        // Fonction qui sert à afficher la grille à l'écran
 
         final String green = "\u001B[32m";
         final String reset = "\u001B[0m";
@@ -61,10 +62,6 @@ public class Grille {
             }
 
         }
-
-    }
-
-    public void caseColor(Cases case1, Cases case2, Cases case3, Cases case4) {
 
     }
 

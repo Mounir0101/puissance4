@@ -52,7 +52,7 @@ public class Main {
                 // Quitter la partie
                 case "4":
 
-                    System.out.println("Salut");
+                    System.out.println("Au revoir");
                     System.exit(0);
 
                 default:

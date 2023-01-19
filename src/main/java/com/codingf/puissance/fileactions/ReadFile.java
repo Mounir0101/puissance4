@@ -8,6 +8,7 @@ import java.util.*;
 public class ReadFile {
 
     public static void readTop10() {
+        // Fonction pour afficher le top 10 à l'écran
 
         try {
             BufferedReader top10 = new BufferedReader(new FileReader("top10.txt"));
@@ -26,13 +27,7 @@ public class ReadFile {
                 while (!add) {
 
                     if (top.containsKey(infos[0])) {
-                        //System.out.println(infos[0] + "bonjour");
                         infos[0] = " " + infos[0];
-                        //top.put(infos[0], Integer.valueOf(infos[1]));
-                        //System.out.println(infos[0] + "bonjour");
-                        //if (top.get(infos[0]) > Integer.parseInt(infos[1])) {
-                        //    top.put(infos[0], Integer.valueOf(infos[1]));
-                        //}
                     }
                     else {
                         top.put(infos[0], Integer.valueOf(infos[1]));
@@ -69,7 +64,12 @@ public class ReadFile {
                         }
                     }
                     iterator++;
-                    System.out.println(iterator + " : " + thing.trim() + " a gagné en " + key + " coups");
+                    if (iterator == 1) {
+                        System.out.println(iterator + "er : " + thing.trim() + " a gagné en " + key + " coups");
+                    }
+                    else {
+                        System.out.println(iterator + "ème : " + thing.trim() + " a gagné en " + key + " coups");
+                    }
 
                     if (iterator == 10) {
                         break;
@@ -83,7 +83,7 @@ public class ReadFile {
 
         }
         catch (IOException e) {
-            System.out.println("NON");
+            System.out.println("Le fichier n'a pas été trouvé");
         }
 
     }

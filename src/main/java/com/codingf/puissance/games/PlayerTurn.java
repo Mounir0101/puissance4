@@ -8,6 +8,7 @@ import com.codingf.puissance.modeles.Cases;
 public class PlayerTurn {
 
     public static boolean playerTurn(Joueur currentPlayer, Cases[][] casesList, int line) {
+        // Fonction qui définit ce qu'un joueur fait quand c'est son tour de jouer
 
         Scanner input = new Scanner(System.in);
 

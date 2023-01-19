@@ -11,6 +11,7 @@ public class IALvl1 extends IA{
     }
 
     public static int iaPlay() {
+        // Fonction de jeu pour une ia niveau 1 (placement aléatoire)
         Random rand = new Random();
         int column = rand.nextInt(7);
         return column;

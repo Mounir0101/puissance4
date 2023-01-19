@@ -2,6 +2,11 @@ package com.codingf.puissance.modeles;
 
 public class Cases {
 
+    /**
+     * Définition de la classe Cases :
+     * Elle prend en compte les positions x et y de la case, et le symbole qu'elle contient
+     */
+
     private int line;
 
     private int column;

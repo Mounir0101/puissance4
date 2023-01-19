@@ -4,6 +4,11 @@ import com.codingf.puissance.modeles.Cases;
 
 public class VictoryChecker {
 
+    /**
+     * Cette classe sert à renvoyer si une victoire a eu lieu ou non
+     * Si c'est le cas, on peut récupérer les 4 cases victorieuses
+     */
+
     boolean victory;
 
     Cases case1;

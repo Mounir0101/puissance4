@@ -16,6 +16,8 @@ import java.util.Scanner;
 public class JeuSeul {
 
     public static void singlePlayer(Cases[][] casesList) {
+        // Fonction principale pour une partie avec un ordi
+
     // initiation des cases
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 7; j++) {
@@ -23,6 +25,8 @@ public class JeuSeul {
                 casesList[i][j] = square;
             }
         }
+
+        System.out.println("Vous allez jouer contre l'ordinateur");
 
         int iaLvl;
         // menu pour jouer avec l'IA
@@ -46,7 +50,7 @@ public class JeuSeul {
 
         Grille grille = new Grille(casesList);
 
-        System.out.println("Vous allez jouer seul");
+        //System.out.println("Vous allez jouer seul");
 
         // Creation du joueur et de l'ia
         Joueur joueur = InitPlayers.player1();

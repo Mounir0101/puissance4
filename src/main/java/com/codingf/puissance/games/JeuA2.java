@@ -12,6 +12,7 @@ import java.util.Scanner;
 public class JeuA2 {
 
     public static void twoPlayers(Cases[][] casesList) {
+        // Fonction principale pour une partie entre deux joueurs humains
 
         // initialisation des cases
         for (int i = 0; i < 6; i++) {

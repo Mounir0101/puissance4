@@ -2,6 +2,11 @@ package com.codingf.puissance.modeles;
 
 public class Joueur {
 
+    /**
+     * Définition de la classe Joueur :
+     * Elle prend en compte le nom du joueur, son symbole et le nombre de tours joués
+     */
+
     private String pseudo;
 
     private char symbol;

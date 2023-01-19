@@ -11,6 +11,7 @@ public class Victoire {
     static VictoryChecker victory;
 
     public static VictoryChecker lineVictory(Cases[][] casesList) {
+        // Vérification des victoires sur une ligne
 
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 4; j++) {
@@ -26,6 +27,7 @@ public class Victoire {
     }
 
     public static VictoryChecker columnVictory(Cases[][] casesList) {
+        // Vérification des victoires sur une colonne
 
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 7; j++) {
@@ -41,6 +43,7 @@ public class Victoire {
     }
 
     public static VictoryChecker diagTLBRVictory(Cases[][] casesList) {
+        // Vérification des victoires sur une diagonale "haut-gauche/bas-droite
 
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 4; j++) {
@@ -56,6 +59,7 @@ public class Victoire {
     }
 
     public static VictoryChecker diagTRBLVictory(Cases[][] casesList) {
+        // Vérification des victoires sur une diagonale "haut-droite/bas-gauche
 
         for (int i = 5; i > 2; i--) {
             for (int j = 0; j < 4; j++) {
@@ -71,6 +75,7 @@ public class Victoire {
     }
 
     public static boolean mainChecker(VictoryChecker vic, Cases[][] casesList, Joueur currentPlayer, Grille grille) {
+        // Fonction pour vérifier si une victoire a lieu
 
         if (Victoire.lineVictory(casesList).isVictory() || Victoire.columnVictory(casesList).isVictory() ||
                 Victoire.diagTLBRVictory(casesList).isVictory() || Victoire.diagTRBLVictory(casesList).isVictory()) {
@@ -86,7 +91,6 @@ public class Victoire {
             if (Victoire.diagTRBLVictory(casesList).isVictory()) {
                 vic = Victoire.diagTRBLVictory(casesList);
             }
-            //play = false;
             grille.affichageGrille(vic);
             System.out.println();
             System.out.println("Victoire de " + currentPlayer.getPseudo() + " en "+currentPlayer.getTurn()+ " coups\n");

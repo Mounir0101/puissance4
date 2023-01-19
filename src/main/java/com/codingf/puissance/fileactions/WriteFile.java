@@ -10,6 +10,7 @@ import java.io.IOException;
 public class WriteFile {
 
     public static void writeTop10(Joueur currentPlayer) {
+        // Fonction pour enregistrer les scores dans le fichier top10.txt
 
         try {
             File top10 = new File("../top10.txt");

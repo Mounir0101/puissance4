@@ -13,6 +13,7 @@ public class IALvl2 extends IALvl1{
     }
 
     public static Align3 columnPlacement(Cases[][] casesList) {
+        // Fonction qui dit où une ia niveau 2 doit placer son pion si le joueur va compléter une colonne
 
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 7; j++) {
@@ -29,6 +30,7 @@ public class IALvl2 extends IALvl1{
 
 
     public static Align3 linePlacement(Cases[][] casesList) {
+        // Fonction qui dit où une ia niveau 2 doit placer son pion si le joueur va compléter une ligne
 
         for (int i = 0; i < 6; i++) {
             for (int j = 1; j < 6; j++) {
@@ -42,7 +44,8 @@ public class IALvl2 extends IALvl1{
                     if (casesList[i][j - 2].getSymbol() == ' ' || casesList[i][j + 2].getSymbol() == ' ') {
                         if (casesList[i][j-2].getSymbol() == ' ') {
                             return new Align3(true, j-2);
-                        } else if (casesList[i][j+2].getSymbol() == ' ') {
+                        }
+                        else if (casesList[i][j+2].getSymbol() == ' ') {
                             return new Align3(true, j+2);
                         }
                         /*Random rand = new Random();
@@ -95,6 +98,8 @@ public class IALvl2 extends IALvl1{
 
 
     public static Align3 diagTLBRPlacement(Cases[][] casesList) {
+        // Fonction qui dit où une ia niveau 2 doit placer son pion
+        // si le joueur va compléter une diagonale "haut-gauche/bas droite"
 
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 4; j++) {
@@ -106,10 +111,13 @@ public class IALvl2 extends IALvl1{
                 }
             }
         }
+
         return new Align3(false, 0);
     }
 
     public static Align3 diagTRBLPlacement(Cases[][] casesList) {
+        // Fonction qui dit où une ia niveau 2 doit placer son pion
+        // si le joueur va compléter une diagonale "haut-droite/bas-gauche"
 
         for (int i = 5; i > 2; i--) {
             for (int j = 0; j < 4; j++) {
@@ -126,6 +134,8 @@ public class IALvl2 extends IALvl1{
 
 
     public static int iaPlay2(Cases[][] casesList) {
+        // Fonction qui définit ce qu'une ia niveau 2 va faire (par rapport aux fonctions créées plus haut)
+
         if (columnPlacement(casesList).isCheck()) {
             return columnPlacement(casesList).getColumn();
         }
