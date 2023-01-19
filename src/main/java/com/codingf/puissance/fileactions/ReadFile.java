@@ -13,7 +13,7 @@ public class ReadFile {
             BufferedReader top10 = new BufferedReader(new FileReader("top10.txt"));
             Scanner fileScan = new Scanner(top10);
 
-            HashMap<String, Integer> top = new HashMap<String, Integer>();
+            HashMap<String, Integer> top = new HashMap<>();
 
             while (fileScan.hasNextLine()) {
 
@@ -21,7 +21,25 @@ public class ReadFile {
 
                 String[] infos = topInfo.split(" : ");
 
-                top.put(infos[0], Integer.valueOf(infos[1]));
+                boolean add = false;
+
+                while (!add) {
+
+                    if (top.containsKey(infos[0])) {
+                        System.out.println(infos[0] + "bonjour");
+                        infos[0] = " " + infos[0];
+                        //top.put(infos[0], Integer.valueOf(infos[1]));
+                        System.out.println(infos[0] + "bonjour");
+                        //if (top.get(infos[0]) > Integer.parseInt(infos[1])) {
+                        //    top.put(infos[0], Integer.valueOf(infos[1]));
+                        //}
+                    }
+                    else {
+                        top.put(infos[0], Integer.valueOf(infos[1]));
+                        add = true;
+                    }
+
+                }
 
             }
 
@@ -51,7 +69,7 @@ public class ReadFile {
                         }
                     }
                     iterator++;
-                    System.out.println(iterator + " : " + thing + " a gagné en " + key + " coups");
+                    System.out.println(iterator + " : " + thing.trim() + " a gagné en " + key + " coups");
 
                     if (iterator == 10) {
                         break;
